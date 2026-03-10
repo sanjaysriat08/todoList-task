@@ -5,7 +5,9 @@ function renderTodoList() {
 
     let todoRenderHTML = '';
 
-    for(let i=0 ; i<todoList.length ; i++) {
+    // for Loop :
+
+    /*for(let i=0 ; i<todoList.length ; i++) {
 
         const todoObject = todoList[i];
         if(todoObject.name != '' && todoObject.dueDate!='') {
@@ -24,7 +26,43 @@ function renderTodoList() {
             
             todoRenderHTML += html;
         }
-    }
+    }*/
+
+    //forEach Loop :
+
+    /*
+    
+    array_name.forEach(function(parameter1//value,parameter2//index) {
+    Statement 1;
+    Statement 2;
+    .
+    .
+    .
+    Statement n;
+    });
+
+    */
+
+
+    todoList.forEach(function(todoObject,index) {
+        if(todoObject.name != '' && todoObject.dueDate!='') {
+
+            const name = todoObject.name;
+            const dueDate = todoObject.dueDate;
+            const html = 
+            `
+            <div>${dueDate}</div>
+            <div>${name}</div>
+                
+                <button class='deleteButton' onclick='
+                todoList.splice(${index},1);
+                renderTodoList();
+                localStorage.remove(todoList[${index}]);
+                '>Delete</button>`;
+            
+            todoRenderHTML += html;
+        }
+    });
 
     document.querySelector('.todoRender').innerHTML = todoRenderHTML;
 
